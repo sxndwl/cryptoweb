@@ -4,7 +4,8 @@ import UseBinance from './api/usewebsocket'
 
 const Coins = () => {
     const valutes = [
-        'btcusdt@miniTicker@1000ms','ethusdt@miniTicker@1000ms'
+        'btcusdt@miniTicker@1000ms',
+//         'ethusdt@miniTicker@1000ms'
     ]
     const { coursesInfo, isPriceGoingUp } = UseBinance(valutes);
     return (
