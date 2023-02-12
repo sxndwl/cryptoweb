@@ -3,8 +3,11 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
     background: #181920;
     border: 0.58152px solid rgba(255, 255, 255, 0.2);
-    border-radius: 11px;
+    border-radius: 20px;
     padding: 15px;
+    width: ${({ width = 'auto' }) => width};
+    height: ${({ height = 'auto' }) => height};
+    margin: 12px;
 `
 
 export const Title = styled.p`

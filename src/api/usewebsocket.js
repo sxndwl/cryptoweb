@@ -6,19 +6,16 @@ const UseBinance = (props) => {
     const [coursesInfo, setCoursesInfo] = useState([])
     const [isPriceGoingUp, setIsPriceGoingUp] = useState(null)
 
-    let usedOnce = false;
+    let usedOnce = false
     
     useEffect(() =>{
-    const socket =  multiSocket(props);//соединяемся с сокетом
-    if(!usedOnce){
-      // eslint-disable-next-line
+    const socket =  multiSocket(props);  // connecting to a socket
+    if(!usedOnce) {
       usedOnce = true;
       let previousValue = []
       socket.onmessage = (event) => {
         const courses = JSON.parse(event.data)
-        // if((courses.s) === "ETHUSDT"){ это мое временное решение, я планирую создавать отдельные состояние для каждой криптовалюты)))
-        //   alert('eth!!')
-        // }
+        console.log(courses.s.slice(0,-4))
         setCoursesInfo(courses)
         setIsPriceGoingUp(
           parseFloat(previousValue.c) !== parseFloat(courses.c) 

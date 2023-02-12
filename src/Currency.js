@@ -10,7 +10,7 @@ const Wrap = styled.div`
 `
 
 const Inner = styled.div`
-    width: ${({ width = 'auto' }) => width};// через псевдокласс last-child реализовать!
+    width: 25%;
     display: flex;
     flex-direction: column;
 `
@@ -25,11 +25,11 @@ const ArrowWrap = styled.div`
     border: 0.58152px solid ${({ border = 'rgb(156 163 175)' }) => border};
     background: ${({ background = ' rgba(156 163 175 0.5)' }) => background};
     stroke: ${({ stroke = 'rgb(156 163 175)' }) => stroke};
+    margin-left: 10px;
     transition: none;
 `
 
 const Currency = ({ name, subname, currencyValue, condition }) => {
-    console.log(currencyValue)
     return (
     <Wrap>
         <Inner>
@@ -45,7 +45,7 @@ const Currency = ({ name, subname, currencyValue, condition }) => {
             </Inner>
             <Inner>
                 <Title weight={600} color='#9ca3af'>435.94$</Title>
-                <Subtitle color='#9ca3af'>-68.44 (5,20%)</Subtitle>
+                {/* <Subtitle color='#9ca3af'>-68.44 (5,20%)</Subtitle> */}
             </Inner>
         </>
       ) : condition ? (
@@ -73,7 +73,7 @@ const Currency = ({ name, subname, currencyValue, condition }) => {
             </Inner>
         </>
     ) }
-        <Inner width='25%'>
+        <Inner>
                 <Title size={16} weight={600}>${parseFloat(currencyValue.c).toLocaleString('en')}</Title>
         </Inner>     
     </Wrap>
