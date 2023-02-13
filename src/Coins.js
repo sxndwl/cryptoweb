@@ -14,6 +14,11 @@ const Coins = () => {
     ]
     const { coursesInfo, isPriceGoingUp } = UseBinance(valutes);
     const btc = useSelector(state => state.btc.btc[0])
+    const ltc = useSelector(state => state.ltc.ltc[0])
+    const doge = useSelector(state => state.doge.doge[0])
+    const eth = useSelector(state => state.eth.eth[0])
+    const dash = useSelector(state => state.dash.dash[0])
+    const xrp = useSelector(state => state.xrp.xrp[0])
     console.log(btc)
     return (
         <Wrapper width='360px'>
