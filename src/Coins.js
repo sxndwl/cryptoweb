@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { Title, Wrapper } from './styles/components'
 import Currency from './Currency'
 import UseBinance from './api/usewebsocket'
@@ -12,14 +13,15 @@ const Coins = () => {
         'xrpusdt@miniTicker@1000ms',
     ]
     const { coursesInfo, isPriceGoingUp } = UseBinance(valutes);
-    console.log(coursesInfo)
+    const btc = useSelector(state => state.btc.btc[0])
+    console.log(btc)
     return (
         <Wrapper width='360px'>
             <Title size={18} weight={700}>Coins</Title>
             <Currency
             name='BTC'
             subname='Bitcoin'
-            currencyValue={coursesInfo}
+            currencyValue={btc}
             condition={isPriceGoingUp}
             />
             <Currency
@@ -51,7 +53,7 @@ const Coins = () => {
             subname='Ripple'
             currencyValue={coursesInfo}
             condition={isPriceGoingUp}
-            />                                    
+            />                            
         </Wrapper>
     )
 }
