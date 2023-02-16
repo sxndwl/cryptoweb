@@ -1,6 +1,5 @@
 const defaultState = {
     eth: [],
-    // isPriceGoingUp: null
 }
 
 export const ethReducer = (state = defaultState, action) => {

@@ -1,6 +1,5 @@
 const defaultState = {
     dash: [],
-    // isPriceGoingUp: null
 }
 
 export const dashReducer = (state = defaultState, action) => {

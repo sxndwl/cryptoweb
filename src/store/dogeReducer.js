@@ -1,6 +1,5 @@
 const defaultState = {
     doge: [],
-    // isPriceGoingUp: null
 }
 
 export const dogeReducer = (state = defaultState, action) => {

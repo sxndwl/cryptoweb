@@ -1,16 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { multiSocket } from './websocket';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-const UseBinance = (props) => {
+const UseBinance = (valutes) => {
     const dispatch = useDispatch()
-    const [coursesInfo, setCoursesInfo] = useState([])
-    const [isPriceGoingUp, setIsPriceGoingUp] = useState(null)
+
+    const BTC = useSelector(state => state.btc.btc[0])
+    const LTC = useSelector(state => state.ltc.ltc[0])
+    const DOGE = useSelector(state => state.doge.doge[0])
+    const ETH = useSelector(state => state.eth.eth[0])
+    const DASH = useSelector(state => state.dash.dash[0])
+    const XRP = useSelector(state => state.xrp.xrp[0])
 
     let usedOnce = false
     
-    useEffect(() =>{
-    const socket =  multiSocket(props);  // connecting to a socket
+    useEffect(() => {
+
+    const socket =  multiSocket(valutes);  // connecting to a socket
+
     if(!usedOnce) {
       usedOnce = true;
       let previousValue = []
@@ -19,21 +26,19 @@ const UseBinance = (props) => {
         let name = courses.s.slice(0,-4)
         setCoursesInfo(courses)
         setIsPriceGoingUp(
-          parseFloat(previousValue.c) !== parseFloat(courses.c) 
-          ? parseFloat(previousValue.c) < parseFloat(courses.c)
-          : null
+          parseFloat(previousValue.c) !== parseFloat(courses.c)
+            ? parseFloat(previousValue.c) < parseFloat(courses.c)
+            : null
         )
-        dispatch({ type: `ADD_${name}`, payload: courses })
-        previousValue = courses
+        const value = {
+          courses,
+          isPriceGoingUp
+        }
+        dispatch({ type: `ADD_${name}`, payload: value })
       }
+
     }
   }, [])
-
-  return {
-    coursesInfo,
-    isPriceGoingUp,
-  }
-
 }
 
 export default UseBinance

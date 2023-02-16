@@ -1,6 +1,5 @@
 const defaultState = {
-    btc: [],
-    // isPriceGoingUp: null
+    btc: []
 }
 
 export const btcReducer = (state = defaultState, action) => {

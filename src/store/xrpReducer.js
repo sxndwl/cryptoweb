@@ -1,6 +1,6 @@
 const defaultState = {
     xrp: [],
-    // isPriceGoingUp: null
+
 }
 
 export const xrpReducer = (state = defaultState, action) => {

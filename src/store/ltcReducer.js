@@ -1,6 +1,5 @@
 const defaultState = {
     ltc: [],
-    // isPriceGoingUp: null
 }
 
 export const ltcReducer = (state = defaultState, action) => {

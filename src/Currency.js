@@ -1,6 +1,8 @@
 import { Title, Subtitle } from './styles/components'
 import styled from "styled-components"
 import { Icon20ArrowDownOutline, Icon20ArrowRightOutline, Icon20ArrowUpOutline } from '@vkontakte/icons';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Wrap = styled.div`
     padding-top: 15px;
@@ -29,14 +31,15 @@ const ArrowWrap = styled.div`
     transition: none;
 `
 
-const Currency = ({ name, subname, currencyValue, condition }) => {
-    return (
+const Currency = ({ name, subname, currencyValue }) => {//сделать с помощью useEffect
+    if (currencyValue) {
+        return(
     <Wrap>
         <Inner>
                 <Title size={16} weight={500}>{name}</Title>
                 <Subtitle>{subname}</Subtitle>
         </Inner>
-    { condition === null ? (
+    { currencyValue.isPriceGoingUp === null ? (
         <>
             <Inner>
                 <ArrowWrap>
@@ -48,7 +51,7 @@ const Currency = ({ name, subname, currencyValue, condition }) => {
                 {/* <Subtitle color='#9ca3af'>-68.44 (5,20%)</Subtitle> */}
             </Inner>
         </>
-      ) : condition ? (
+      ) : currencyValue.isPriceGoingUp ? (
         <>
             <Inner>
                     <ArrowWrap stroke='#06D6A0' border='#06D6A0' background='rgba(6, 214, 160, 0.11)'>
@@ -74,10 +77,31 @@ const Currency = ({ name, subname, currencyValue, condition }) => {
         </>
     ) }
         <Inner>
-                <Title size={16} weight={600}>${parseFloat(currencyValue.c).toLocaleString('en')}</Title>
+                <Title size={16} weight={600}>${parseFloat(currencyValue.courses.c).toLocaleString('en')}</Title>
         </Inner>     
     </Wrap>
-    )
+        )
+    }
+    return(
+        <Wrap>
+            <Inner>
+                <Title size={16} weight={500}>{<Skeleton baseColor='#a8a8a8' width={70} />}</Title>
+                <Subtitle>{<Skeleton baseColor='#a8a8a8' width={70} />}</Subtitle>
+            </Inner>
+            <Inner>
+                <ArrowWrap border='none'>
+                    <Skeleton baseColor='#a8a8a8' circle width={28} height={28} />
+                </ArrowWrap>
+            </Inner>
+            <Inner>
+                <Title weight={600} color='#06D6A0'><Skeleton baseColor='#a8a8a8' width={70}/></Title>
+                {/* <Subtitle color='#06D6A0'>-68.44 (5,20%)</Subtitle> */}
+            </Inner>
+            <Inner>
+                <Skeleton baseColor='#a8a8a8' />
+            </Inner>
+        </Wrap>
+    );
 }
 
 export default Currency
