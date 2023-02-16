@@ -20,12 +20,22 @@ const UseBinance = (valutes) => {
 
     if(!usedOnce) {
       usedOnce = true;
-      let previousValue = []
+      let previousValue = [
+        { name: 'BTC', value: BTC },
+        { name: 'LTC', value: LTC },
+        { name: 'DOGE', value: DOGE },
+        { name: 'ETH', value: ETH },
+        { name: 'DASH', value: DASH },
+        { name: 'XRP', value: XRP },
+      ]
       socket.onmessage = (event) => {
         const courses = JSON.parse(event.data)
-        let name = courses.s.slice(0,-4)
-        setCoursesInfo(courses)
-        setIsPriceGoingUp(
+        let name = courses.s.slice(0, -4)
+
+        let test = previousValue.find(city => city.name === name)
+        console.log(test);
+        
+        const isPriceGoingUp = (
           parseFloat(previousValue.c) !== parseFloat(courses.c)
             ? parseFloat(previousValue.c) < parseFloat(courses.c)
             : null
