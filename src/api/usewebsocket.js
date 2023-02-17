@@ -34,7 +34,6 @@ const UseBinance = (valutes) => {
         let sorting = previousValue.find(i => i.name === name).value
         if(sorting === undefined){
           setIsPriceGoingUp(null)
-          console.log('tt')
         } else {
           setIsPriceGoingUp(
             parseFloat(sorting.courses.c) !== parseFloat(courses.c)
