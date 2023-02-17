@@ -1,5 +1,5 @@
 const defaultState = {
-    btc: []
+    btc: [],
 }
 
 export const btcReducer = (state = defaultState, action) => {

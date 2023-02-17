@@ -33,56 +33,56 @@ const ArrowWrap = styled.div`
 
 const Currency = ({ name, subname, currencyValue }) => {//сделать с помощью useEffect
     if (currencyValue) {
-        return(
-    <Wrap>
-        <Inner>
-                <Title size={16} weight={500}>{name}</Title>
-                <Subtitle>{subname}</Subtitle>
-        </Inner>
-    { currencyValue.isPriceGoingUp === null ? (
-        <>
-            <Inner>
-                <ArrowWrap>
-                    <Icon20ArrowRightOutline/>
-                </ArrowWrap>
-            </Inner>
-            <Inner>
-                <Title weight={600} color='#9ca3af'>435.94$</Title>
-                {/* <Subtitle color='#9ca3af'>-68.44 (5,20%)</Subtitle> */}
-            </Inner>
-        </>
-      ) : currencyValue.isPriceGoingUp ? (
-        <>
-            <Inner>
-                    <ArrowWrap stroke='#06D6A0' border='#06D6A0' background='rgba(6, 214, 160, 0.11)'>
-                        <Icon20ArrowUpOutline/>
-                    </ArrowWrap>
-            </Inner>
-            <Inner>
-                    <Title weight={600} color='#06D6A0'>+ 5.22%</Title>
-                    {/* <Subtitle color='#06D6A0'>-68.44 (5,20%)</Subtitle> */}
-            </Inner>
-        </>
-      ) : (
-        <>
-            <Inner>
-                    <ArrowWrap stroke='#EF476F' border='#EF476F' background='rgba(239, 71, 111, 0.11)'>
-                        <Icon20ArrowDownOutline/>
-                    </ArrowWrap>
-            </Inner>
-            <Inner>
-                    <Title weight={600} color='#EF476F'>- 5.66%</Title>
-                    {/* <Subtitle color='#EF476F'>-68.44 (5,20%)</Subtitle> */}
-            </Inner>
-        </>
-    ) }
-        <Inner>
-                <Title size={16} weight={600}>${parseFloat(currencyValue.courses.c).toLocaleString('en')}</Title>
-        </Inner>     
-    </Wrap>
+        return (
+            <Wrap>
+                <Inner>
+                    <Title size={16} weight={500}>{name}</Title>
+                    <Subtitle>{subname}</Subtitle>
+                </Inner>
+                {currencyValue.isPriceGoingUp === null ? (
+                    <>
+                        <Inner>
+                            <ArrowWrap>
+                                <Icon20ArrowRightOutline />
+                            </ArrowWrap>
+                        </Inner>
+                        <Inner>
+                            <Title weight={600} color='#9ca3af'>435.94$</Title>
+                            {/* <Subtitle color='#9ca3af'>-(5,20%)</Subtitle> */}
+                        </Inner>
+                    </>
+                ) : currencyValue.isPriceGoingUp ? (
+                    <>
+                        <Inner>
+                            <ArrowWrap stroke='#06D6A0' border='#06D6A0' background='rgba(6, 214, 160, 0.11)'>
+                                <Icon20ArrowUpOutline />
+                            </ArrowWrap>
+                        </Inner>
+                        <Inner>
+                            <Title weight={600} color='#06D6A0'>+ 5.22%</Title>
+                            {/* <Subtitle color='#06D6A0'>-(5,20%)</Subtitle> */}
+                        </Inner>
+                    </>
+                ) : (
+                    <>
+                        <Inner>
+                            <ArrowWrap stroke='#EF476F' border='#EF476F' background='rgba(239, 71, 111, 0.11)'>
+                                <Icon20ArrowDownOutline />
+                            </ArrowWrap>
+                        </Inner>
+                        <Inner>
+                            <Title weight={600} color='#EF476F'>- 5.66%</Title>
+                            {/* <Subtitle color='#EF476F'>-(5,20%)</Subtitle> */}
+                        </Inner>
+                    </>
+                )}
+                <Inner>
+                    <Title size={16} weight={600}>${parseFloat(currencyValue.courses.c).toLocaleString('en')}</Title>
+                </Inner>
+            </Wrap>
         )
     }
-    return(
+    return (
         <Wrap>
             <Inner>
                 <Title size={16} weight={500}>{<Skeleton baseColor='#a8a8a8' width={70} />}</Title>
@@ -94,8 +94,8 @@ const Currency = ({ name, subname, currencyValue }) => {//сделать с по
                 </ArrowWrap>
             </Inner>
             <Inner>
-                <Title weight={600} color='#06D6A0'><Skeleton baseColor='#a8a8a8' width={70}/></Title>
-                {/* <Subtitle color='#06D6A0'>-68.44 (5,20%)</Subtitle> */}
+                <Title weight={600} color='#06D6A0'><Skeleton baseColor='#a8a8a8' width={70} /></Title>
+                {/* <Subtitle color='#06D6A0'><Skeleton width={70} /></Subtitle> */}
             </Inner>
             <Inner>
                 <Skeleton baseColor='#a8a8a8' />

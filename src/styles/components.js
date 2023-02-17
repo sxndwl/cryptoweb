@@ -19,7 +19,7 @@ export const Title = styled.p`
 export const Subtitle = styled.p`
     color: ${({ color = '#FFFFFF' }) => color};
     opacity: 0.5;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
     padding-top: 4px;
 `

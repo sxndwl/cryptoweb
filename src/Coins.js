@@ -7,7 +7,7 @@ const Coins = () => {
     const valutes = [
         'btcusdt@miniTicker@1000ms',
         'ltcusdt@miniTicker@1000ms',
-        'dogeusdt@miniTicker@1000ms', 
+        'dogeusdt@miniTicker@1000ms',
         'ethusdt@miniTicker@1000ms',
         'dashusdt@miniTicker@1000ms',
         'xrpusdt@miniTicker@1000ms',
@@ -20,41 +20,41 @@ const Coins = () => {
     const dash = useSelector(state => state.dash.dash[0])
     const xrp = useSelector(state => state.xrp.xrp[0])
 
-    UseBinance(valutes, btc)
+    UseBinance(valutes)
 
     return (
         <Wrapper width='360px'>
             <Title size={18} weight={700}>Coins</Title>
-                <Currency
+            <Currency
                 name='BTC'
                 subname='Bitcoin'
                 currencyValue={btc}
-                />
-                <Currency
+            />
+            <Currency
                 name='LTC'
                 subname='Litecoin'
                 currencyValue={ltc}
-                />
-                <Currency
+            />
+            <Currency
                 name='XDG'
                 subname='Dogecoin'
                 currencyValue={doge}
-                />
-                <Currency
+            />
+            <Currency
                 name='ETH'
                 subname='Ethereum'
                 currencyValue={eth}
-                />
-                <Currency
+            />
+            <Currency
                 name='DASH'
                 subname='Dash'
                 currencyValue={dash}
-                />
-                <Currency
+            />
+            <Currency
                 name='XRP'
                 subname='Ripple'
                 currencyValue={xrp}
-                />          
+            />
         </Wrapper>
     )
 }
