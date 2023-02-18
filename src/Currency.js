@@ -1,7 +1,7 @@
 import { Title, Subtitle } from './styles/components'
 import styled from "styled-components"
 import { Icon20ArrowDownOutline, Icon20ArrowRightOutline, Icon20ArrowUpOutline } from '@vkontakte/icons';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 const Wrap = styled.div`
@@ -47,7 +47,7 @@ const Currency = ({ name, subname, currencyValue }) => {//сделать с по
                             </ArrowWrap>
                         </Inner>
                         <Inner>
-                            <Title weight={600} color='#9ca3af'>435.94$</Title>
+                            <Title weight={600} color='#9ca3af'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#9ca3af'>-(5,20%)</Subtitle> */}
                         </Inner>
                     </>
@@ -59,7 +59,7 @@ const Currency = ({ name, subname, currencyValue }) => {//сделать с по
                             </ArrowWrap>
                         </Inner>
                         <Inner>
-                            <Title weight={600} color='#06D6A0'>+ 5.22%</Title>
+                            <Title weight={600} color='#06D6A0'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#06D6A0'>-(5,20%)</Subtitle> */}
                         </Inner>
                     </>
@@ -71,7 +71,7 @@ const Currency = ({ name, subname, currencyValue }) => {//сделать с по
                             </ArrowWrap>
                         </Inner>
                         <Inner>
-                            <Title weight={600} color='#EF476F'>- 5.66%</Title>
+                                    <Title weight={600} color='#EF476F'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#EF476F'>-(5,20%)</Subtitle> */}
                         </Inner>
                     </>
@@ -80,7 +80,7 @@ const Currency = ({ name, subname, currencyValue }) => {//сделать с по
                     <Title size={16} weight={600}>${parseFloat(currencyValue.courses.c).toLocaleString('en')}</Title>
                 </Inner>
             </Wrap>
-        )
+       )
     }
     return (
         <Wrap>
