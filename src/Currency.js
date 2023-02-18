@@ -1,4 +1,4 @@
-import { Title, Subtitle } from './styles/components'
+import { Title, Subtitle, Inner } from './styles/components'
 import styled from "styled-components"
 import { Icon20ArrowDownOutline, Icon20ArrowRightOutline, Icon20ArrowUpOutline } from '@vkontakte/icons';
 import Skeleton from 'react-loading-skeleton'
@@ -9,12 +9,11 @@ const Wrap = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 `
 
-const Inner = styled.div`
+const Box = styled(Inner)`
     width: 25%;
-    display: flex;
-    flex-direction: column;
 `
 
 const ArrowWrap = styled.div`
@@ -35,71 +34,71 @@ const Currency = ({ name, subname, currencyValue }) => {//сделать с по
     if (currencyValue) {
         return (
             <Wrap>
-                <Inner>
+                <Box>
                     <Title size={16} weight={500}>{name}</Title>
                     <Subtitle>{subname}</Subtitle>
-                </Inner>
+                </Box>
                 {currencyValue.isPriceGoingUp === null ? (
                     <>
-                        <Inner>
+                        <Box>
                             <ArrowWrap>
                                 <Icon20ArrowRightOutline />
                             </ArrowWrap>
-                        </Inner>
-                        <Inner>
-                            <Title weight={600} color='#9ca3af'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
+                        </Box>
+                        <Box>
+                            <Title weight={600} color='#9ca3af'>${parseFloat(currencyValue.difference).toFixed(2)}</Title>
                             {/* <Subtitle color='#9ca3af'>-(5,20%)</Subtitle> */}
-                        </Inner>
+                        </Box>
                     </>
                 ) : currencyValue.isPriceGoingUp ? (
                     <>
-                        <Inner>
+                        <Box>
                             <ArrowWrap stroke='#06D6A0' border='#06D6A0' background='rgba(6, 214, 160, 0.11)'>
                                 <Icon20ArrowUpOutline />
                             </ArrowWrap>
-                        </Inner>
-                        <Inner>
-                            <Title weight={600} color='#06D6A0'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
+                        </Box>
+                        <Box>
+                                <Title weight={600} color='#06D6A0'>${parseFloat(currencyValue.difference).toFixed(2)}</Title>
                             {/* <Subtitle color='#06D6A0'>-(5,20%)</Subtitle> */}
-                        </Inner>
+                        </Box>
                     </>
                 ) : (
                     <>
-                        <Inner>
+                        <Box>
                             <ArrowWrap stroke='#EF476F' border='#EF476F' background='rgba(239, 71, 111, 0.11)'>
                                 <Icon20ArrowDownOutline />
                             </ArrowWrap>
-                        </Inner>
-                        <Inner>
-                                    <Title weight={600} color='#EF476F'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
+                        </Box>
+                        <Box>
+                            <Title weight={600} color='#EF476F'>${parseFloat(currencyValue.difference).toFixed(2)}</Title>
                             {/* <Subtitle color='#EF476F'>-(5,20%)</Subtitle> */}
-                        </Inner>
+                        </Box>
                     </>
                 )}
-                <Inner>
+                <Box>
                     <Title size={16} weight={600}>${parseFloat(currencyValue.courses.c).toLocaleString('en')}</Title>
-                </Inner>
+                </Box>
             </Wrap>
        )
     }
     return (
         <Wrap>
-            <Inner>
+            <Box>
                 <Title size={16} weight={500}>{<Skeleton baseColor='#a8a8a8' width={70} />}</Title>
                 <Subtitle>{<Skeleton baseColor='#a8a8a8' width={70} />}</Subtitle>
-            </Inner>
-            <Inner>
+            </Box>
+            <Box>
                 <ArrowWrap border='none'>
                     <Skeleton baseColor='#a8a8a8' circle width={28} height={28} />
                 </ArrowWrap>
-            </Inner>
-            <Inner>
+            </Box>
+            <Box>
                 <Title weight={600} color='#06D6A0'><Skeleton baseColor='#a8a8a8' width={70} /></Title>
                 {/* <Subtitle color='#06D6A0'><Skeleton width={70} /></Subtitle> */}
-            </Inner>
-            <Inner>
+            </Box>
+            <Box>
                 <Skeleton baseColor='#a8a8a8' />
-            </Inner>
+            </Box>
         </Wrap>
     );
 }

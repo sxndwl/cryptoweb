@@ -23,8 +23,8 @@ const Coins = () => {
     UseBinance(valutes)
 
     return (
-        <Wrapper width='360px'>
-            <Title size={18} weight={700}>Coins</Title>
+        <Wrapper width='25%'>
+            <Title paddingBottom={20} size={18} weight={700}>Coins</Title>
             <Currency
                 name='BTC'
                 subname='Bitcoin'
