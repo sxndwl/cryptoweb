@@ -8,6 +8,12 @@ const Wrap = styled(Wrapper)`
 `
 
 const Aside = () => {
+    let pos =0
+    while (pos >= 8) {
+        pos-=8
+        console.log(pos)
+    }
+
     return(
         <Wrap height='40px' width='75%'>
             <Inner>
@@ -32,7 +38,7 @@ const Aside = () => {
             </Inner>
             <Inner>
                 <Subtitle>24h Low</Subtitle>
-                <Title paddingTop={4} size={16} weight={500}>0.033334</Title>
+                <Title paddingTop={4} size={16} weight={500}>0.0333348989</Title>
             </Inner>
         </Wrap>
     )

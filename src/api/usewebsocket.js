@@ -42,7 +42,7 @@ const UseBinance = (valutes) => {
         parseFloat(sorting.courses.c) !== parseFloat(courses.c)
           ? parseFloat(sorting.courses.c) < parseFloat(courses.c)
           : null
-      )
+      )// заменить на dispatch, так как состояние задается слишком медленно?
       setDifference(parseFloat(courses.c).toFixed(2) - parseFloat(sorting.courses.c).toFixed(2))
     }
     const value = {
