@@ -27,9 +27,12 @@ const ArrowWrap = styled.div`
 `
 
 const Currency = ({ name, subname, currencyValue }) => {
+    function test(){
+        console.log(1)
+    }
     if (currencyValue) {
         return (
-            <Wrap>
+            <Wrap >
                 <Inner width='25%'>
                     <Title size={16} weight={500}>{name}</Title>
                     <Subtitle>{subname}</Subtitle>
@@ -41,7 +44,7 @@ const Currency = ({ name, subname, currencyValue }) => {
                                 <Icon20ArrowRightOutline fill='9ca3af'/>
                             </ArrowWrap>
                         </Inner>
-                        <Inner width='25%'>
+                        <Inner onClick={test()} width='25%'>
                             <Title weight={600} color='#9ca3af'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#9ca3af'>-(5,20%)</Subtitle> */}
                         </Inner>
