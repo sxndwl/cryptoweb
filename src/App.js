@@ -1,7 +1,7 @@
-import styled from "styled-components"
-import GlobalStyles from './styles/global'
-import Coins from './Coins'
-import Aside from './Aside'
+import styled from 'styled-components'
+import Header from './components/Header'
+import Coins from './components/Coins'
+import Aside from './components/Aside'
 
 const Box = styled.div`
     display: flex;
@@ -10,11 +10,11 @@ const Box = styled.div`
 const App = () => {
   return (
     <>
-      <GlobalStyles />
-      <Box>
-          <Coins/>
-          <Aside/>
-      </Box>
+      <Header />
+        <Box>
+            <Coins/>
+            <Aside/>
+        </Box>
     </>
   )
 }

@@ -6,8 +6,6 @@ const UseBinance = (valutes) => {
   const dispatch = useDispatch()
 
   const [socket, setSocket] = useState([])
-  const [isPriceGoingUp, setIsPriceGoingUp] = useState()
-  const [difference, setDifference] = useState(0)
 
   const BTC = useSelector(state => state.btc.btc[0])
   const LTC = useSelector(state => state.ltc.ltc[0])
@@ -23,34 +21,37 @@ const UseBinance = (valutes) => {
     { name: 'ETH', value: ETH },
     { name: 'DASH', value: DASH },
     { name: 'XRP', value: XRP },
-  ]
+  ]   
 
   useEffect(() => {
-    setSocket(multiSocket(valutes))
+    setSocket(multiSocket(valutes)) // create socket
     // eslint-disable-next-line
   }, [])
 
   socket.onmessage = (event) => {
     const courses = JSON.parse(event.data)
     let name = courses.s.slice(0, -4)
+    let isPriceGoingUp = null
+    let difference = 0
 
     let sorting = previousValue.find(i => i.name === name).value
-    if (sorting === undefined) {
-      setIsPriceGoingUp(null)
-    } else {
-      setIsPriceGoingUp(
+    if (sorting !== undefined) {
+      isPriceGoingUp = (
         parseFloat(sorting.courses.c) !== parseFloat(courses.c)
           ? parseFloat(sorting.courses.c) < parseFloat(courses.c)
-          : null
-      )// заменить на dispatch, так как состояние задается слишком медленно?
-      setDifference(parseFloat(courses.c).toFixed(2) - parseFloat(sorting.courses.c).toFixed(2))
+          : null)
+      difference = (parseFloat(courses.c) - parseFloat(sorting.courses.c))
     }
+    
     const value = {
       courses,
       isPriceGoingUp,
       difference,
     }
-    dispatch({ type: `ADD_${name}`, payload: value })
+    dispatch({
+      type: `ADD_${name}`, 
+      payload: value 
+    })
   }
 }
 

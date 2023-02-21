@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import { Title, Wrapper } from './styles/components'
+import { Title, Wrapper } from '../styles/components'
 import Currency from './Currency'
-import UseBinance from './api/usewebsocket'
+import UseBinance from '../api/usewebsocket'
 
 const Coins = () => {
     const valutes = [
@@ -13,14 +13,14 @@ const Coins = () => {
         'xrpusdt@miniTicker@1000ms',
     ];
 
+    UseBinance(valutes)
+
     const btc = useSelector(state => state.btc.btc[0])
     const ltc = useSelector(state => state.ltc.ltc[0])
     const doge = useSelector(state => state.doge.doge[0])
     const eth = useSelector(state => state.eth.eth[0])
     const dash = useSelector(state => state.dash.dash[0])
     const xrp = useSelector(state => state.xrp.xrp[0])
-
-    UseBinance(valutes)
 
     return (
         <Wrapper width='25%'>

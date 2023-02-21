@@ -1,19 +1,15 @@
-import { Title, Subtitle, Inner } from './styles/components'
+import { Title, Subtitle, Inner } from '../styles/components'
 import styled from "styled-components"
 import { Icon20ArrowDownOutline, Icon20ArrowRightOutline, Icon20ArrowUpOutline } from '@vkontakte/icons';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 const Wrap = styled.div`
-    padding-top: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-`
-
-const Box = styled(Inner)`
-    width: 25%;
+    padding-top: 15px;
 `
 
 const ArrowWrap = styled.div`
@@ -30,75 +26,75 @@ const ArrowWrap = styled.div`
     transition: none;
 `
 
-const Currency = ({ name, subname, currencyValue }) => {//сделать с помощью useEffect
+const Currency = ({ name, subname, currencyValue }) => {
     if (currencyValue) {
         return (
             <Wrap>
-                <Box>
+                <Inner width='25%'>
                     <Title size={16} weight={500}>{name}</Title>
                     <Subtitle>{subname}</Subtitle>
-                </Box>
+                </Inner>
                 {currencyValue.isPriceGoingUp === null ? (
                     <>
-                        <Box>
+                        <Inner width='25%'>
                             <ArrowWrap>
-                                <Icon20ArrowRightOutline />
+                                <Icon20ArrowRightOutline fill='9ca3af'/>
                             </ArrowWrap>
-                        </Box>
-                        <Box>
-                            <Title weight={600} color='#9ca3af'>${parseFloat(currencyValue.difference).toFixed(2)}</Title>
+                        </Inner>
+                        <Inner width='25%'>
+                            <Title weight={600} color='#9ca3af'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#9ca3af'>-(5,20%)</Subtitle> */}
-                        </Box>
+                        </Inner>
                     </>
                 ) : currencyValue.isPriceGoingUp ? (
                     <>
-                        <Box>
+                        <Inner width='25%'>
                             <ArrowWrap stroke='#06D6A0' border='#06D6A0' background='rgba(6, 214, 160, 0.11)'>
-                                <Icon20ArrowUpOutline />
+                                <Icon20ArrowUpOutline fill='06D6A0'/>
                             </ArrowWrap>
-                        </Box>
-                        <Box>
-                                <Title weight={600} color='#06D6A0'>${parseFloat(currencyValue.difference).toFixed(2)}</Title>
+                        </Inner>
+                        <Inner width='25%'>
+                            <Title weight={600} color='#06D6A0'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#06D6A0'>-(5,20%)</Subtitle> */}
-                        </Box>
+                        </Inner>
                     </>
                 ) : (
                     <>
-                        <Box>
+                        <Inner width='25%'>
                             <ArrowWrap stroke='#EF476F' border='#EF476F' background='rgba(239, 71, 111, 0.11)'>
-                                <Icon20ArrowDownOutline />
+                                <Icon20ArrowDownOutline fill='EF476F' />
                             </ArrowWrap>
-                        </Box>
-                        <Box>
-                            <Title weight={600} color='#EF476F'>${parseFloat(currencyValue.difference).toFixed(2)}</Title>
+                        </Inner>
+                        <Inner width='25%'>
+                            <Title weight={600} color='#EF476F'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#EF476F'>-(5,20%)</Subtitle> */}
-                        </Box>
+                        </Inner>
                     </>
                 )}
-                <Box>
+                <Inner width='25%'>
                     <Title size={16} weight={600}>${parseFloat(currencyValue.courses.c).toLocaleString('en')}</Title>
-                </Box>
+                </Inner>
             </Wrap>
        )
     }
     return (
         <Wrap>
-            <Box>
+            <Inner width='25%'>
                 <Title size={16} weight={500}>{<Skeleton baseColor='#a8a8a8' width={70} />}</Title>
                 <Subtitle>{<Skeleton baseColor='#a8a8a8' width={70} />}</Subtitle>
-            </Box>
-            <Box>
+            </Inner>
+            <Inner width='25%'>
                 <ArrowWrap border='none'>
                     <Skeleton baseColor='#a8a8a8' circle width={28} height={28} />
                 </ArrowWrap>
-            </Box>
-            <Box>
+            </Inner>
+            <Inner width='25%'>
                 <Title weight={600} color='#06D6A0'><Skeleton baseColor='#a8a8a8' width={70} /></Title>
                 {/* <Subtitle color='#06D6A0'><Skeleton width={70} /></Subtitle> */}
-            </Box>
-            <Box>
+            </Inner>
+            <Inner width='25%'>
                 <Skeleton baseColor='#a8a8a8' />
-            </Box>
+            </Inner>
         </Wrap>
     );
 }

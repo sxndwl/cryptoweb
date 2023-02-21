@@ -10,7 +10,6 @@ export default createGlobalStyle`
 * {
     padding: 0;
     margin: 0;
-    color: #FFFFFF;
 }
 
 body {
