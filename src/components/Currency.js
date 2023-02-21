@@ -32,7 +32,7 @@ const Currency = ({ name, subname, currencyValue }) => {
     }
     if (currencyValue) {
         return (
-            <Wrap >
+            <Wrap onClick={test()}>
                 <Inner width='25%'>
                     <Title size={16} weight={500}>{name}</Title>
                     <Subtitle>{subname}</Subtitle>
@@ -44,7 +44,7 @@ const Currency = ({ name, subname, currencyValue }) => {
                                 <Icon20ArrowRightOutline fill='9ca3af'/>
                             </ArrowWrap>
                         </Inner>
-                        <Inner onClick={test()} width='25%'>
+                        <Inner width='25%'>
                             <Title weight={600} color='#9ca3af'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#9ca3af'>-(5,20%)</Subtitle> */}
                         </Inner>
