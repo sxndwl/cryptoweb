@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import { Title, Subtitle, Inner } from '../styles/components'
 import styled from "styled-components"
 import { Icon20ArrowDownOutline, Icon20ArrowRightOutline, Icon20ArrowUpOutline } from '@vkontakte/icons';
@@ -10,6 +11,11 @@ const Wrap = styled.div`
     align-items: center;
     cursor: pointer;
     padding-top: 15px;
+    transition: 0.5s all;
+    
+    &:hover{
+        opacity: 0.5;
+    }
 `
 
 const ArrowWrap = styled.div`
@@ -27,12 +33,15 @@ const ArrowWrap = styled.div`
 `
 
 const Currency = ({ name, subname, currencyValue }) => {
-    function test(){
-        console.log(1)
+    const dispatch = useDispatch()
+
+    function changeCurrency(name){
+        dispatch({ type: 'CHANGE_CURRENT', payload: name })
     }
+
     if (currencyValue) {
         return (
-            <Wrap onClick={test()}>
+            <Wrap onClick={() => changeCurrency(currencyValue.courses.s)}>
                 <Inner width='25%'>
                     <Title size={16} weight={500}>{name}</Title>
                     <Subtitle>{subname}</Subtitle>

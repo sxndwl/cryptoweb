@@ -1,5 +1,5 @@
 const defaultState = {
-    name: 'btcusdt',
+    name: 'BTCUSDT',
     value: []
 }
 

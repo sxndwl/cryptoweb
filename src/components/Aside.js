@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { Title, Wrapper, Inner, Subtitle } from '../styles/components'
 import styled from "styled-components"
@@ -14,20 +12,15 @@ const Wrap = styled(Wrapper)`
 `
 
 const Aside = () => {
-    const dispatch = useDispatch()
-
     const value = useSelector(state => state.current)
     useCurrent(value.name)
-    // useEffect(() => {
-    //     dispatch({ type: 'CHANGE_CURRENT', payload: 'ethusdt' })
-    // },[])
 
     if (value.value[0]) {
         return(
             <Wrap height='40px' width='75%'>
                 <Inner width='16%'>
                     <Subtitle>Coin name</Subtitle>
-                    <Title paddingTop={4} weight={500}>{value.name.toUpperCase().slice(0, -4)}</Title>
+                    <Title paddingTop={4} weight={500}>{value.name.slice(0, -4)}</Title>
                 </Inner>
                 <Inner width='16%'>
                     <Subtitle>Price</Subtitle>

@@ -3,5 +3,5 @@ export const multiSocket = (valutes) => {
 }
 
 export const currentSocket = (valute) => {
-  return new WebSocket(`wss://stream.binance.com:443/ws/${valute}@ticker`)
+  return new WebSocket(`wss://stream.binance.com:443/ws/${valute.toLowerCase()}@ticker`)
 }

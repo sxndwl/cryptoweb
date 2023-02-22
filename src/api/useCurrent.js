@@ -3,16 +3,18 @@ import { currentSocket } from './websocket';
 import { useDispatch } from 'react-redux';
 
 const useCurrent = (valute) => {
-    const dispatch = useDispatch()
-    useEffect(() => {//store.subscribe и останавливать ес че
-        const socket = currentSocket(valute)
-        socket.onmessage = (event) => {
-            const data = JSON.parse(event.data)
+    const [usedOnce, setUsedOnce] = useState(false)
+    const [socket, setsocket] = useState()
 
-            dispatch({
-                type: `ADD_VALUE`,
-                payload: data
-            })
+    useEffect(() => {
+        setsocket(currentSocket(valute))//создаем сокет
+        if (!usedOnce){
+            console.log(2)//здесь будем выводить информацию и так далее
+            setUsedOnce(true)
+        }else{
+            setUsedOnce(false)
+            socket.close()//здесь пытаюсь его закрыть но ничего не выходит
+            console.log(1)
         }
     }, [valute])
 }
