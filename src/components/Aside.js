@@ -12,35 +12,35 @@ const Wrap = styled(Wrapper)`
 `
 
 const Aside = () => {
-    const value = useSelector(state => state.current)
-    useCurrent(value.name)
-
-    if (value.value[0]) {
+    const name = useSelector(state => state.current.name)
+    const value = useSelector(state => state.current.value[0])
+    useCurrent(name)
+    if (value) {
         return(
             <Wrap height='40px' width='75%'>
                 <Inner width='16%'>
                     <Subtitle>Coin name</Subtitle>
-                    <Title paddingTop={4} weight={500}>{value.name.slice(0, -4)}</Title>
+                    <Title paddingTop={4} weight={500}>{name.slice(0, -4)}</Title>
                 </Inner>
                 <Inner width='16%'>
                     <Subtitle>Price</Subtitle>
-                    <Title paddingTop={4} weight={600}>${parseFloat(value.value[0].c).toLocaleString('en')}</Title>
+                    <Title paddingTop={4} weight={600}>${parseFloat(value.c).toLocaleString('en')}</Title>
                 </Inner>
                 <Inner width='16%'>
                     <Subtitle>Change</Subtitle>
-                    <Title paddingTop={4} weight={600}>{parseFloat(value.value[0].P).toLocaleString('en')}%</Title>
+                    <Title paddingTop={4} weight={600}>{parseFloat(value.P).toLocaleString('en')}%</Title>
                 </Inner>
                 <Inner width='16%'>
                     <Subtitle>24h Volume</Subtitle>
-                    <Title paddingTop={4} weight={600}>{parseFloat(value.value[0].q).toLocaleString('en')}</Title>
+                    <Title paddingTop={4} weight={600}>{parseFloat(value.q).toLocaleString('en')}</Title>
                 </Inner>
                 <Inner width='16%'>
                     <Subtitle>24 High</Subtitle>
-                    <Title paddingTop={4} weight={600}>${parseFloat(value.value[0].h).toLocaleString('en')}</Title>
+                    <Title paddingTop={4} weight={600}>${parseFloat(value.h).toLocaleString('en')}</Title>
                 </Inner>
                 <Inner width='16%'>
                     <Subtitle>24h Low</Subtitle>
-                    <Title paddingTop={4} weight={600}>${parseFloat(value.value[0].l).toLocaleString('en')}</Title>
+                    <Title paddingTop={4} weight={600}>${parseFloat(value.l).toLocaleString('en')}</Title>
                 </Inner>
             </Wrap>
         )

@@ -12,7 +12,7 @@ const Wrap = styled.div`
     cursor: pointer;
     padding-top: 15px;
     transition: 0.5s all;
-    
+
     &:hover{
         opacity: 0.5;
     }
@@ -37,6 +37,7 @@ const Currency = ({ name, subname, currencyValue }) => {
 
     function changeCurrency(name){
         dispatch({ type: 'CHANGE_CURRENT', payload: name })
+        dispatch({ type: 'ADD_VALUE', payload: undefined })
     }
 
     if (currencyValue) {
