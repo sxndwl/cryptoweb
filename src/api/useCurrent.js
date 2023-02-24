@@ -1,22 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { currentSocket } from './websocket';
 import { useDispatch } from 'react-redux';
 
 const useCurrent = (valute) => {
-    const [usedOnce, setUsedOnce] = useState(false)
-    const [socket, setsocket] = useState()
-
+    const dispatch = useDispatch()
+    const [isPaused, setIsPaused] = useState(false)
+    const [status, setStatus] = useState(valute)
+    const ws = useRef(null)
+    if (status !== valute) {
+        setIsPaused(true)
+        setStatus(valute)
+    }
     useEffect(() => {
-        setsocket(currentSocket(valute))//создаем сокет
-        if (!usedOnce){
-            console.log(2)//здесь будем выводить информацию и так далее
-            setUsedOnce(true)
-        }else{
-            setUsedOnce(false)
-            socket.close()//здесь пытаюсь его закрыть но ничего не выходит
-            console.log(1)
+        if (!isPaused) {
+            ws.current = currentSocket(valute) 
+            ws.current.onmessage = (event) => {
+                const value = JSON.parse(event.data);
+                dispatch({
+                    type: 'ADD_VALUE',
+                    payload: value
+                })
+            }
+        }else {
+            ws.current.close() 
+            setIsPaused(false)
         }
-    }, [valute])
+    }, [ws, isPaused]);
 }
-
 export default useCurrent
