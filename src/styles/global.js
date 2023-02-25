@@ -12,6 +12,22 @@ export default createGlobalStyle`
     margin: 0;
 }
 
+input {
+    font-family: 'Manrope';
+    background: none;
+    outline: none;
+    border: none;
+    color: white;
+    width: 107px;
+    height: 25px;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+svg {
+    cursor: pointer;
+}
+
 body {
     font-family: 'Manrope';
     background-color: #151517;

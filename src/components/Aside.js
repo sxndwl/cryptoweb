@@ -13,11 +13,12 @@ const Wrap = styled(Wrapper)`
 
 const Aside = () => {
     const name = useSelector(state => state.current.name)
-    const value = useSelector(state => state.current.value[0])
     useCurrent(name)
+
+    const value = useSelector(state => state.current.value[0])
     if (value) {
         return(
-            <Wrap height='40px' width='75%'>
+            <Wrap height='40px'>
                 <Inner width='16%'>
                     <Subtitle>Coin name</Subtitle>
                     <Title paddingTop={4} weight={500}>{name.slice(0, -4)}</Title>
@@ -46,7 +47,7 @@ const Aside = () => {
         )
     }
     return(
-        <Wrap height='40px' width='75%'>
+        <Wrap height='40px'>
             <Inner width='16%'>
                 <Subtitle>Coin name</Subtitle>
                 <Title paddingTop={4} weight={500}><Skeleton baseColor='#a8a8a8' /></Title>
@@ -69,7 +70,7 @@ const Aside = () => {
             </Inner>
             <Inner width='16%'>
                 <Subtitle>24h Low</Subtitle>
-                <Title paddingTop={4} weight={600}><Skeleton baseColor='#a8a8a8' /></Title>
+                <Title paddingTop={4} weight={600}><Skeleton width='100%' baseColor='#a8a8a8' /></Title>
             </Inner>
         </Wrap>
     )

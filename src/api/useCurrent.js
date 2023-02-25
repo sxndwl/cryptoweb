@@ -15,7 +15,7 @@ const useCurrent = (valute) => {
         if (!isPaused) {
             ws.current = currentSocket(valute) 
             ws.current.onmessage = (event) => {
-                const value = JSON.parse(event.data);
+                const value = JSON.parse(event.data)
                 dispatch({
                     type: 'ADD_VALUE',
                     payload: value
@@ -25,6 +25,7 @@ const useCurrent = (valute) => {
             ws.current.close() 
             setIsPaused(false)
         }
-    }, [ws, isPaused]);
+        // eslint-disable-next-line
+    }, [ws, isPaused, valute])
 }
 export default useCurrent
