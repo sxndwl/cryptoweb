@@ -33,7 +33,7 @@ const Header = () => {
             </Inner>
             <Inner flexDirection='row' alignItems='center'>
                 <Box>
-                    <Icon28SearchOutline fill='rgba(255, 255, 255, 0.2)' />
+                    <Icon28SearchOutline width={24} height={24} fill='rgba(255, 255, 255, 0.2)' />
                     <input type="text" placeholder='Search...' />
                 </Box>
                 <Icon28SettingsOutline fill='rgba(255, 255, 255, 0.2)'/>

@@ -7,6 +7,7 @@ const useCurrent = (valute) => {
     const [isPaused, setIsPaused] = useState(false)
     const [status, setStatus] = useState(valute)
     const ws = useRef(null)
+    
     if (status !== valute) {
         setIsPaused(true)
         setStatus(valute)

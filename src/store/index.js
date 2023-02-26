@@ -1,12 +1,12 @@
 import { createStore, combineReducers } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { btcReducer } from './btcReducer'
-import { ethReducer } from './ethReducer'
-import { dashReducer } from './dashReducer'
-import { dogeReducer } from './dogeReducer'
-import { ltcReducer } from './ltcReducer'
-import { xrpReducer } from './xrpReducer'
-import { currentCurrency } from './currentCurrency'
+import { btcReducer } from './reducers/btcReducer'
+import { ethReducer } from './reducers/ethReducer'
+import { dashReducer } from './reducers/dashReducer'
+import { dogeReducer } from './reducers/dogeReducer'
+import { ltcReducer } from './reducers/ltcReducer'
+import { xrpReducer } from './reducers/xrpReducer'
+import { currentCurrency } from './reducers/currentCurrency'
 
 const rootReducer = combineReducers({
     btc: btcReducer,

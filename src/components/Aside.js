@@ -27,10 +27,18 @@ const Aside = () => {
                     <Subtitle>Price</Subtitle>
                     <Title paddingTop={4} weight={600}>${parseFloat(value.c).toLocaleString('en')}</Title>
                 </Inner>
-                <Inner width='16%'>
-                    <Subtitle>Change</Subtitle>
-                    <Title paddingTop={4} weight={600}>{parseFloat(value.P).toLocaleString('en')}%</Title>
-                </Inner>
+                {value.P < 0 ? (
+                        <Inner width='16%'>
+                            <Subtitle>Change</Subtitle>
+                            <Title color='#EF476F' paddingTop={4} weight={600}>{parseFloat(value.P).toLocaleString('en')}%</Title>
+                        </Inner>
+                    ) : (
+                        <Inner width='16%'>
+                            <Subtitle>Change</Subtitle>
+                            <Title color='#06D6A0' paddingTop={4} weight={600}>{parseFloat(value.P).toLocaleString('en')}%</Title>
+                        </Inner>
+                    )
+                }
                 <Inner width='16%'>
                     <Subtitle>24h Volume</Subtitle>
                     <Title paddingTop={4} weight={600}>{parseFloat(value.q).toLocaleString('en')}</Title>
