@@ -16,8 +16,8 @@ const App = () => {
         <Box>
             <Coins/>
               <Inner width='75%'>
-                  <Aside/>
-                  <Chart/>
+                  <Aside />
+                  <Chart />
               </Inner>
         </Box>
     </>
