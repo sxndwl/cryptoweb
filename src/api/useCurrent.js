@@ -12,6 +12,7 @@ const useCurrent = (valute) => {
         setIsPaused(true)
         setStatus(valute)
     }
+    
     useEffect(() => {
         if (!isPaused) {
             ws.current = currentSocket(valute) 
@@ -22,7 +23,7 @@ const useCurrent = (valute) => {
                     payload: value
                 })
             }
-        }else {
+        } else {
             ws.current.close() 
             setIsPaused(false)
         }
