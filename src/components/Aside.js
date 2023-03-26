@@ -16,6 +16,7 @@ const Aside = () => {
     useCurrent(name)
 
     const value = useSelector(state => state.current.value[0])
+    
     if (value) {
         return(
             <Wrap height='40px'>
@@ -40,16 +41,16 @@ const Aside = () => {
                     )   
                 }
                 <Inner width='16%'>
-                    <Subtitle>24h Volume</Subtitle>
-                    <Title paddingTop={4} weight={600}>{parseFloat(value.q).toLocaleString('en')}</Title>
-                </Inner>
-                <Inner width='16%'>
-                    <Subtitle>24 High</Subtitle>
+                    <Subtitle>24h High</Subtitle>
                     <Title paddingTop={4} weight={600}>${parseFloat(value.h).toLocaleString('en')}</Title>
                 </Inner>
                 <Inner width='16%'>
                     <Subtitle>24h Low</Subtitle>
                     <Title paddingTop={4} weight={600}>${parseFloat(value.l).toLocaleString('en')}</Title>
+                </Inner>
+                <Inner width='16%'>
+                    <Subtitle>24h Volume</Subtitle>
+                    <Title paddingTop={4} weight={600}>{parseFloat(value.q).toLocaleString('en')}</Title>
                 </Inner>
             </Wrap>
         )
@@ -73,12 +74,12 @@ const Aside = () => {
                 <Title paddingTop={4} weight={600}><Skeleton baseColor='#a8a8a8' /></Title>
             </Inner>
             <Inner width='16%'>
-                <Subtitle>24 High</Subtitle>
+                <Subtitle>24h High</Subtitle>
                 <Title paddingTop={4} weight={600}><Skeleton baseColor='#a8a8a8' /></Title>
             </Inner>
             <Inner width='16%'>
                 <Subtitle>24h Low</Subtitle>
-                <Title paddingTop={4} weight={600}><Skeleton width='100%' baseColor='#a8a8a8' /></Title>
+                <Title paddingTop={4} weight={600}><Skeleton baseColor='#a8a8a8' /></Title>
             </Inner>
         </Wrap>
     )

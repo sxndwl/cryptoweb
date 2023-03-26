@@ -24,7 +24,7 @@ const Coins = () => {
 
     return (
         <Wrapper width='25%'>
-            <Title paddingBottom={20} size={18} weight={700}>Coins</Title>
+            <Title paddingBottom={20} size={18} >Coins</Title>
             <Currency
                 name='BTC'
                 subname='Bitcoin'

@@ -20,7 +20,7 @@ export const Inner = styled.div`
 export const Title = styled.p`
     color: ${({ color = '#FFFFFF' }) => color};
     font-size: ${({ size = 16 }) => size + 'px'};
-    font-weight: ${({ weight = 700 }) => weight};
+    font-weight: ${({ weight = 600 }) => weight};
     padding-top: ${({ paddingTop = 0 }) => paddingTop + 'px'};
     padding-bottom: ${({ paddingBottom = 0 }) => paddingBottom + 'px'};
 `

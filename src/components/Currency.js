@@ -12,7 +12,6 @@ const Wrap = styled.div`
     cursor: pointer;
     padding-top: 15px;
     transition: 0.5s all;
-
     &:hover{
         opacity: 0.5;
     }
@@ -35,9 +34,10 @@ const ArrowWrap = styled.div`
 const Currency = ({ name, subname, currencyValue }) => {
     const dispatch = useDispatch()
 
-    function changeCurrency(name){
+    function changeCurrency (name){
         dispatch({ type: 'CHANGE_CURRENT', payload: name })
         dispatch({ type: 'ADD_VALUE', payload: undefined })
+        dispatch({ type: 'ADD_GRAPH', payload: undefined })
     }
 
     if (currencyValue) {
@@ -55,7 +55,7 @@ const Currency = ({ name, subname, currencyValue }) => {
                             </ArrowWrap>
                         </Inner>
                         <Inner width='25%'>
-                            <Title weight={600} color='#9ca3af'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
+                            <Title color='#9ca3af'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#9ca3af'>-(5,20%)</Subtitle> */}
                         </Inner>
                     </>
@@ -67,7 +67,7 @@ const Currency = ({ name, subname, currencyValue }) => {
                             </ArrowWrap>
                         </Inner>
                         <Inner width='25%'>
-                            <Title weight={600} color='#06D6A0'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
+                            <Title color='#06D6A0'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#06D6A0'>-(5,20%)</Subtitle> */}
                         </Inner>
                     </>
@@ -79,13 +79,13 @@ const Currency = ({ name, subname, currencyValue }) => {
                             </ArrowWrap>
                         </Inner>
                         <Inner width='25%'>
-                            <Title weight={600} color='#EF476F'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
+                            <Title color='#EF476F'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#EF476F'>-(5,20%)</Subtitle> */}
                         </Inner>
                     </>
                 )}
                 <Inner width='25%'>
-                    <Title size={16} weight={600}>${parseFloat(currencyValue.courses.c).toLocaleString('en')}</Title>
+                    <Title size={16}>${parseFloat(currencyValue.courses.c).toLocaleString('en')}</Title>
                 </Inner>
             </Wrap>
        )
@@ -93,7 +93,7 @@ const Currency = ({ name, subname, currencyValue }) => {
     return (
         <Wrap>
             <Inner width='25%'>
-                <Title size={16} weight={500}>{<Skeleton baseColor='#a8a8a8' width={70} />}</Title>
+                <Title size={16}>{<Skeleton baseColor='#a8a8a8' width={70} />}</Title>
                 <Subtitle>{<Skeleton baseColor='#a8a8a8' width={70} />}</Subtitle>
             </Inner>
             <Inner width='25%'>
@@ -102,7 +102,7 @@ const Currency = ({ name, subname, currencyValue }) => {
                 </ArrowWrap>
             </Inner>
             <Inner width='25%'>
-                <Title weight={600} color='#06D6A0'><Skeleton baseColor='#a8a8a8' width={70} /></Title>
+                <Title color='#06D6A0'><Skeleton baseColor='#a8a8a8' width={70} /></Title>
                 {/* <Subtitle color='#06D6A0'><Skeleton width={70} /></Subtitle> */}
             </Inner>
             <Inner width='25%'>

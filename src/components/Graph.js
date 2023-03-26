@@ -2,15 +2,10 @@ import { createChart, ColorType } from 'lightweight-charts'
 import { useEffect, useRef } from 'react'
 
 const Graph = (props) => {
-    console.log(props.data)// скоро я уберу мусор из этого кода)))
-    const data = props.data
-    // const {
-    //     data,
-    //     colors: {
-    //         backgroundColor = '#181920',
-    //         textColor = '#ffffff80',
-    //     } = {},
-    // } = props;
+    const series = useRef()
+    const data = useRef([])
+
+    data.current.push(props.data)
 
     const chartContainerRef = useRef()
 
@@ -34,21 +29,29 @@ const Graph = (props) => {
                 },
             },
         })
-        chart.timeScale().fitContent()
 
-        const newSeries = chart.addCandlestickSeries({
-            upColor: '#06D6A0',
-            downColor: '#EF476F',
+        chart.applyOptions({
+            timeScale: {
+                secondsVisible:true
+            },
+        });
+
+        series.current = chart.addAreaSeries({
             priceLineVisible: false,
         })
-        newSeries.setData(data)
+        series.current.setData(data.current)
 
         return () => {
             chart.remove()
+            data.length = 0
         }
-
+        
     }, [data, backgroundColor, textColor])
-    
+
+    useEffect(() => {
+        series.current.update(props.data)
+    }, [props])
+
     return (
         <div ref={chartContainerRef} />
     )
