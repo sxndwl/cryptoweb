@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import ManropeWoff from "../fonts/manrope-v13-latin-regular.woff";
-import ManropeWoff2 from "../fonts/manrope-v13-latin-regular.woff2";
+import ManropeWoff2 from "../fonts/manrope-v13-latin-regular.woff2";   
 
 export default createGlobalStyle`
 @font-face {
@@ -10,6 +10,12 @@ export default createGlobalStyle`
 * {
     padding: 0;
     margin: 0;
+}
+
+button {
+    background: none;
+    outline: none;
+    border: none;
 }
 
 input {
@@ -30,6 +36,6 @@ svg {
 
 body {
     font-family: 'Manrope';
-    background-color: #151517;
+    background-color: ${props => props.theme.colors.bodyColor};
 }
 `

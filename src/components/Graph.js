@@ -4,28 +4,28 @@ import { useEffect, useRef } from 'react'
 const Graph = (props) => {
     const series = useRef()
     const data = useRef([])
-
-    data.current.push(props.data)
+    const styles = props.theme.theme.colors
 
     const chartContainerRef = useRef()
 
-    const backgroundColor = '#181920'
-    const textColor = '#ffffff80'
+    const backgroundColor = styles.backgroundColor
+    const textColor = styles.subTitleColor
+    const lineColor = styles.lineColor
 
     useEffect(() => {
         const chart = createChart(chartContainerRef.current, {
             layout: {
                 background: { type: ColorType.Solid, color: backgroundColor },
-                textColor,
+                textColor
             },
             width: chartContainerRef.current.clientWidth,
             height: 300,
             grid: {
                 vertLines: {
-                    color: '#181920',
+                    color: '#00000000',
                 },
                 horzLines: {
-                    color: 'rgba(197, 203, 206, 0.1)',
+                    color: lineColor,
                 },
             },
         })
@@ -39,17 +39,24 @@ const Graph = (props) => {
         series.current = chart.addAreaSeries({
             priceLineVisible: false,
         })
-        series.current.setData(data.current)
 
         return () => {
             chart.remove()
             data.length = 0
         }
         
-    }, [data, backgroundColor, textColor])
+    }, [backgroundColor, textColor, lineColor])
 
     useEffect(() => {
-        series.current.update(props.data)
+        const sortData = {
+            time: new Date().getTime() / 1000.0,
+            value: Number((props.data.c).toLocaleString('en'))
+        }
+        data.current.push(sortData)
+
+        series.current.setData(data.current)
+        series.current.update(sortData)
+
     }, [props])
 
     return (

@@ -7,6 +7,8 @@ import { dogeReducer } from './reducers/dogeReducer'
 import { ltcReducer } from './reducers/ltcReducer'
 import { xrpReducer } from './reducers/xrpReducer'
 import { currentCurrency } from './reducers/currentCurrency'
+import { tradeReducer } from './reducers/tradeReducer'
+import { themeReducer } from './reducers/themeReducer'
 
 const rootReducer = combineReducers({
     btc: btcReducer,
@@ -15,7 +17,9 @@ const rootReducer = combineReducers({
     xrp: xrpReducer,
     dash: dashReducer,
     doge: dogeReducer,
-    current: currentCurrency
+    current: currentCurrency,
+    trade: tradeReducer,
+    theme: themeReducer
 })
 
 export const store = createStore(rootReducer, composeWithDevTools())

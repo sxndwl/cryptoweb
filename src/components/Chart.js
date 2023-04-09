@@ -3,16 +3,13 @@ import Graph from './Graph'
 import { Wrapper, Title } from '../styles/components'
 import useKline from '../api/useKline'
 
-const Chart = () => {
-    const valute = useSelector(state => state.current.name)
-    useKline(valute) 
-    
-    const data = useSelector(state => state.current.graph[0])
+const Chart = (theme) => {
+    const data = useSelector(state => state.current.value[0])
 
     if (data) {
         return (
             <Wrapper>
-                <Graph data={data} />
+                <Graph theme={theme} data={data} />
             </Wrapper>
         )
     }

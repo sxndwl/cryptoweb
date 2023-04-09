@@ -12,9 +12,11 @@ const Wrap = styled.div`
     cursor: pointer;
     padding-top: 15px;
     transition: 0.5s all;
+
     &:hover{
         opacity: 0.5;
     }
+    
 `
 
 const ArrowWrap = styled.div`
@@ -38,6 +40,7 @@ const Currency = ({ name, subname, currencyValue }) => {
         dispatch({ type: 'CHANGE_CURRENT', payload: name })
         dispatch({ type: 'ADD_VALUE', payload: undefined })
         dispatch({ type: 'ADD_GRAPH', payload: undefined })
+        dispatch({ type: 'CLEAR_TRADES', payload: undefined })
     }
 
     if (currencyValue) {
@@ -55,7 +58,7 @@ const Currency = ({ name, subname, currencyValue }) => {
                             </ArrowWrap>
                         </Inner>
                         <Inner width='25%'>
-                            <Title color='#9ca3af'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
+                            <Title none>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#9ca3af'>-(5,20%)</Subtitle> */}
                         </Inner>
                     </>
@@ -67,7 +70,7 @@ const Currency = ({ name, subname, currencyValue }) => {
                             </ArrowWrap>
                         </Inner>
                         <Inner width='25%'>
-                            <Title color='#06D6A0'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
+                            <Title up>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#06D6A0'>-(5,20%)</Subtitle> */}
                         </Inner>
                     </>
@@ -79,7 +82,7 @@ const Currency = ({ name, subname, currencyValue }) => {
                             </ArrowWrap>
                         </Inner>
                         <Inner width='25%'>
-                            <Title color='#EF476F'>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
+                            <Title down>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
                             {/* <Subtitle color='#EF476F'>-(5,20%)</Subtitle> */}
                         </Inner>
                     </>

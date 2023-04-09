@@ -1,6 +1,6 @@
 import { Wrapper, Title, Inner } from '../styles/components'
 import styled from "styled-components"
-import { Icon20MoneyOutline, Icon28SettingsOutline } from '@vkontakte/icons';
+import { Icon20MoneyOutline, Icon28SunOutline, Icon28MoonOutline } from '@vkontakte/icons';
 import Search from './Search';
 
 const Wrap = styled(Wrapper)`
@@ -16,17 +16,29 @@ const Text = styled(Title)`
     padding-left: 10px;
 `
 
-const Header = () => {
+const Header = ({onThemeChange, currentTheme, theme}) => {
+    const handleThemeToggle = () => {
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        onThemeChange(newTheme);
+    }
+
     return(
         <Wrap height='45px'>
             <Inner flexDirection='row'>
                 <Icon20MoneyOutline width={28} height={28} fill='2688EB' />
                 <Text size={18}>cryptoweb</Text>
             </Inner>
-            <Inner flexDirection='row' alignItems='center'>
+            {/* <Inner flexDirection='row' alignItems='center'>
                 <Search />
                 <Icon28SettingsOutline fill='rgba(255, 255, 255, 0.2)'/>
-            </Inner>
+            </Inner> */}
+            <button onClick={handleThemeToggle}>
+                {currentTheme === 'dark' ? (
+                    <Icon28MoonOutline width={28} height={28} fill={theme.colors.subTitleColor} />
+                ) : (
+                    <Icon28SunOutline width={28} height={28} fill={theme.colors.subTitleColor} />
+                )}
+            </button>
         </Wrap>
     )
 }

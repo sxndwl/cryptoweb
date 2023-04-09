@@ -11,5 +11,5 @@ export const klineSocket = (valute) => {
 }
 
 export const tradeSocket = (valute) => {
-  return new WebSocket(`wss://stream.binance.com:443/ws/${'btcusdt'}@trade`)
+  return new WebSocket(`wss://stream.binance.com:443/ws/${valute.toLowerCase()}@trade`)
 }
