@@ -1,54 +1,44 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { tradeSocket } from './websocket'
 
 const useTrade = (valute) => {
-    const [isPaused, setIsPaused] = useState(false)
-    const [status, setStatus] = useState(valute)
     const dispatch = useDispatch()
+
     const ws = useRef(null)
 
-    if (status !== valute) {
-        setIsPaused(true)
-        setStatus(valute)
-    }
-
     useEffect(() => {
-        if (!isPaused) {
-            ws.current = tradeSocket(valute)
-            ws.current.onmessage = (event) => {
-                const value = JSON.parse(event.data)
-                const time = value.E / 1000
-                // Создаем объект Date с UTC временем в миллисекундах
-                const utcDate = new Date(time * 1000);
+        ws.current = tradeSocket(valute)
+        ws.current.onmessage = (event) => {
+            const value = JSON.parse(event.data)
+            const time = value.E / 1000
+            const utcDate = new Date(time * 1000)
+            
+            const localDate = new Date(
+                utcDate.toLocaleString("en-US", { timeZone: "Europe/Moscow" })
+            )
 
-                // Создаем объект Date с местным временем на основе UTC времени
-                const localDate = new Date(
-                    utcDate.toLocaleString("en-US", { timeZone: "Europe/Moscow" })
-                );
+            const hours = localDate.getHours().toString().padStart(2, "0")
+            const minutes = localDate.getMinutes().toString().padStart(2, "0")
+            const seconds = localDate.getSeconds().toString().padStart(2, "0")
 
-                // Получаем часы, минуты и секунды местного времени
-                const hours = localDate.getHours().toString().padStart(2, "0")
-                const minutes = localDate.getMinutes().toString().padStart(2, "0")
-                const seconds = localDate.getSeconds().toString().padStart(2, "0")
+            const formattedTime = `${hours}:${minutes}:${seconds}`;
 
-                const formattedTime = `${hours}:${minutes}:${seconds}`;
-
-                const sortData = {
-                    nottimeq: value.E/1000, id: value.t, time: formattedTime, type: value.m, price: Number(value.p), amount: Number(value.q)
-                }
-
-                dispatch({
-                    type: 'ADD_TRADE',
-                    payload: sortData
-                })
+            const sortData = {
+                id: value.t, time: formattedTime, type: value.m, price: Number(value.p), amount: Number(value.q)
             }
-        } else {
-            ws.current.close()
-            setIsPaused(false)
+
+            dispatch({
+                type: 'ADD_TRADES',
+                payload: sortData
+            })
         }
-        // eslint-disable-next-line
-    }, [ws, isPaused, valute])
+        return () => {
+            if (ws.current) {
+                ws.current.close()
+            }
+        }
+    }, [ws, valute, dispatch])
 }
 
 export default useTrade

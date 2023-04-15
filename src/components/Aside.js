@@ -10,8 +10,19 @@ const Wrap = styled(Wrapper)`
     align-items: center;
     justify-content: space-between;
 `
+const Row = styled(Inner)`
+    width: 16%;
 
-const Aside = () => {
+    @media {props => props.media.phone} {
+        ${props => props.mediaNone && `
+            width: 20%;
+            display: none;
+        `  
+    }
+`
+
+const Aside = (props) => {
+    console.log(props.media)
     const name = useSelector(state => state.current.name)
     useCurrent(name)
 
@@ -19,68 +30,68 @@ const Aside = () => {
     
     if (value) {
         return(
-            <Wrap height='40px'>
-                <Inner width='16%'>
+            <Wrap className='aside' height='40px'>
+                <Row media={props}>
                     <Subtitle>Coin name</Subtitle>
-                    <Title paddingTop={4} weight={500}>{name.slice(0, -4)}</Title>
-                </Inner>
-                <Inner width='16%'>
+                    <Title paddingTop={4} primary>{name}</Title>
+                </Row>
+                <Row media={props}>
                     <Subtitle>Price</Subtitle>
-                    <Title paddingTop={4} weight={600}>${parseFloat(value.c).toLocaleString('en')}</Title>
-                </Inner>
+                    <Title paddingTop={4}>${parseFloat(value.c).toLocaleString('en')}</Title>
+                </Row>
                 {value.P < 0 ? (
-                        <Inner width='16%'>
+                        <Row media={props}>
                             <Subtitle>Change</Subtitle>
-                            <Title paddingTop={4} weight={600} down>{parseFloat(value.P).toLocaleString('en')}%</Title>
-                        </Inner>
+                            <Title paddingTop={4} down>{parseFloat(value.P).toLocaleString('en')}%</Title>
+                        </Row>
                     ) : (
-                           <Inner width='16%'>
+                           <Row media={props}>
                             <Subtitle>Change</Subtitle>
-                            <Title paddingTop={4} weight={600} up>{parseFloat(value.P).toLocaleString('en')}%</Title>
-                        </Inner>
+                            <Title paddingTop={4} up>{parseFloat(value.P).toLocaleString('en')}%</Title>
+                        </Row>
                     )   
                 }
-                <Inner width='16%'>
+                <Row media={props}>
                     <Subtitle>24h High</Subtitle>
-                    <Title paddingTop={4} weight={600}>${parseFloat(value.h).toLocaleString('en')}</Title>
-                </Inner>
-                <Inner width='16%'>
+                    <Title paddingTop={4}>${parseFloat(value.h).toLocaleString('en')}</Title>
+                </Row>
+                <Row media={props}>
                     <Subtitle>24h Low</Subtitle>
-                    <Title paddingTop={4} weight={600}>${parseFloat(value.l).toLocaleString('en')}</Title>
-                </Inner>
-                <Inner width='16%'>
+                    <Title paddingTop={4}>${parseFloat(value.l).toLocaleString('en')}</Title>
+                </Row>
+                <Row media={props} mediaNone>
                     <Subtitle>24h Volume</Subtitle>
-                    <Title paddingTop={4} weight={600}>{parseFloat(value.q).toLocaleString('en')}</Title>   
-                </Inner>
+                    <Title paddingTop={4}>{parseFloat(value.q).toLocaleString('en')}</Title>   
+                </Row>
             </Wrap>
         )
     }
     return(
         <Wrap height='40px'>
-            <Inner width='16%'>
+            <Row media={props}>
                 <Subtitle>Coin name</Subtitle>
-                <Title paddingTop={4} weight={500}><Skeleton baseColor='#a8a8a8' /></Title>
-            </Inner>
-            <Inner width='16%'>
+                <Title paddingTop={4}><Skeleton baseColor='#a8a8a8' /></Title>
+            </Row>
+            <Row media={props}>
                 <Subtitle>Price</Subtitle>
-                <Title paddingTop={4} weight={600}><Skeleton baseColor='#a8a8a8' /></Title>
-            </Inner>
-            <Inner width='16%'>
+                <Title paddingTop={4}><Skeleton baseColor='#a8a8a8' /></Title>
+            </Row>
+            <Row media={props}>
                 <Subtitle>Change</Subtitle>
-                <Title paddingTop={4} weight={600}><Skeleton baseColor='#a8a8a8' /></Title>
-            </Inner>
-            <Inner width='16%'>
-                <Subtitle>24h Volume</Subtitle>
-                <Title paddingTop={4} weight={600}><Skeleton baseColor='#a8a8a8' /></Title>
-            </Inner>
-            <Inner width='16%'>
+                <Title paddingTop={4}><Skeleton baseColor='#a8a8a8' /></Title>
+            </Row>
+            <Row media={props}>
                 <Subtitle>24h High</Subtitle>
-                <Title paddingTop={4} weight={600}><Skeleton baseColor='#a8a8a8' /></Title>
-            </Inner>
-            <Inner width='16%'>
+                <Title paddingTop={4}><Skeleton baseColor='#a8a8a8' /></Title>
+            </Row>
+            <Row media={props}>
                 <Subtitle>24h Low</Subtitle>
-                <Title paddingTop={4} weight={600}><Skeleton baseColor='#a8a8a8' /></Title>
-            </Inner>
+                <Title paddingTop={4}><Skeleton baseColor='#a8a8a8' /></Title>
+            </Row>
+            <Row media={props}>
+                <Subtitle>24h Volume</Subtitle>
+                <Title paddingTop={4}><Skeleton baseColor='#a8a8a8' /></Title>
+            </Row>
         </Wrap>
     )
 }

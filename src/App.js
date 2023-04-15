@@ -8,10 +8,18 @@ import Header from './components/Header'
 import Coins from './components/Coins'
 import Aside from './components/Aside'
 import Chart from './components/Chart'
-import Trade from './components/Trade'
+import Trade from './components/Trade' 
+import Tutorial from './components/Tutorial' 
+import Close from './components/Close' 
 
 const Box = styled.div`
-    display: flex;
+  display: flex;
+`
+
+const AllWrapper = styled.div`
+  @media ${props => props.media.tablet} {
+    display: none;
+  }
 `
 
 const App = () => {
@@ -20,20 +28,25 @@ const App = () => {
 
   const ThemeChange = newTheme => {
     dispatch({ type: 'SET_THEME', payload: newTheme })
+    localStorage.setItem('theme', newTheme === 'light' ? 'light' : 'dark')
   }
 
   return (
-    <ThemeProvider theme = {themes[theme]}>
-      <Header theme={themes[theme]}currentTheme={theme} onThemeChange={ThemeChange}/>
-          <Box>
-              <Coins/>
-                <Inner width='75%'>
-                    <Aside/>
-                    <Chart theme={themes[theme]}/>                  
-                </Inner> 
-          </Box>
-    <Trade/>
-    <GlobalStyles theme={themes[theme]}/>   
+    <ThemeProvider theme={themes[theme]}>
+    <Close media={themes.media} theme={themes[theme]}/>
+    <AllWrapper media={themes.media}>
+        <Tutorial theme={themes[theme]} />
+        <Header theme={themes[theme]} currentTheme={theme} onThemeChange={ThemeChange} />
+        <Box>
+          <Coins media={themes.media}/>
+          <Inner width='75%'>
+            <Aside media={themes.media} />
+            <Chart theme={themes[theme]} />
+          </Inner>
+        </Box>
+        <Trade />
+    </AllWrapper>
+    <GlobalStyles theme={themes[theme]} />   
     </ThemeProvider>
   )
 }

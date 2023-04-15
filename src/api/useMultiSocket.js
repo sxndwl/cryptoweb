@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { multiSocket } from './websocket';
 import { useDispatch, useSelector } from 'react-redux';
 
-const UseBinance = (valutes) => {
+const useMultiSocket = (valutes) => {
   const dispatch = useDispatch()
 
   const [socket, setSocket] = useState([])
@@ -21,10 +21,10 @@ const UseBinance = (valutes) => {
     { name: 'ETH', value: ETH },
     { name: 'DASH', value: DASH },
     { name: 'XRP', value: XRP },
-  ]   
+  ] 
 
   useEffect(() => {
-    setSocket(multiSocket(valutes)) // create socket
+    setSocket(multiSocket(valutes))
     // eslint-disable-next-line
   }, [])
 
@@ -42,17 +42,17 @@ const UseBinance = (valutes) => {
           : null)
       difference = (parseFloat(courses.c) - parseFloat(sorting.courses.c))
     }
-    
+
     const value = {
       courses,
       isPriceGoingUp,
       difference,
     }
     dispatch({
-      type: `ADD_${name}`, 
-      payload: value 
+      type: `ADD_${name}`,
+      payload: value
     })
   }
 }
 
-export default UseBinance
+export default useMultiSocket

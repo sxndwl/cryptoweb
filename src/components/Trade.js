@@ -31,51 +31,51 @@ const Trade = () => {
     const valute = useSelector(state => state.current.name)
     useTrade(valute) 
 
-    const value = useSelector(state => state.trade.trades)
+    const value = useSelector(state => state.current.trades)
 
     if (value[0]) {
-        return(    
-            <Wrapper>
+        return (
+            <Wrapper className='trade'>
                 <Title paddingBottom={20} size={18}>Trade history</Title>
                 <Wrap>
                     {value.map((trade) => (
                         <Inner key={trade.id} box>
-                                <Inner section>
-                                    <Subtitle>Time</Subtitle>
-                                    <Title>{trade.time}</Title>
-                                </Inner>
-                                {trade.type === true ? (
-                                        <>
-                                            <Inner section>
-                                                <Subtitle>Type</Subtitle>
-                                                <Content up>
-                                                    <Title up>BUY</Title>
-                                                </Content>
-                                            </Inner>
-                                            <Inner section>
-                                                <Subtitle>Price</Subtitle>
-                                                <Title up>{trade.price.toLocaleString('en')}$</Title>
-                                            </Inner>
-                                        </>
-                                ) : (
-                                        <>
-                                            <Inner section>
-                                                <Subtitle>Type</Subtitle>
-                                                <Content down>
-                                                    <Title down>SELL</Title>
-                                                </Content>
-                                            </Inner>
-                                            <Inner section>
-                                                <Subtitle>Price</Subtitle>
-                                                <Title down>{trade.price.toLocaleString('en')}$</Title>
-                                            </Inner>
-                                        </>
-                                )}
-                                <Inner section>
-                                    <Subtitle>Amount ({valute})</Subtitle>
-                                    <Title>{trade.amount}</Title>
-                                </Inner>
+                            <Inner section>
+                                <Subtitle>Time</Subtitle>
+                                <Title>{trade.time}</Title>
                             </Inner>
+                            {trade.type === true ? (
+                                <>
+                                    <Inner section>
+                                        <Subtitle>Type</Subtitle>
+                                        <Content up>
+                                            <Title up>BUY</Title>
+                                        </Content>
+                                    </Inner>
+                                    <Inner section>
+                                        <Subtitle>Price</Subtitle>
+                                        <Title up>{trade.price.toLocaleString('en')}$</Title>
+                                    </Inner>
+                                </>
+                            ) : (
+                                <>
+                                    <Inner section>
+                                        <Subtitle>Type</Subtitle>
+                                        <Content down>
+                                            <Title down>SELL</Title>
+                                        </Content>
+                                    </Inner>
+                                    <Inner section>
+                                        <Subtitle>Price</Subtitle>
+                                        <Title down>{trade.price.toLocaleString('en')}$</Title>
+                                    </Inner>
+                                </>
+                            )}
+                            <Inner section>
+                                <Subtitle>Amount ({valute})</Subtitle>
+                                <Title>{trade.amount}</Title>
+                            </Inner>
+                        </Inner>
                     ))}
                 </Wrap>
             </Wrapper>
@@ -84,6 +84,7 @@ const Trade = () => {
 
     return(
         <Wrapper>
+            <Title paddingBottom={20} size={18}>Trade history</Title>
             <Wrap>
                 <Inner box>
                         <Inner section>

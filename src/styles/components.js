@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
 export const Inner = styled.div`
     display: flex;
     flex-direction: ${({ flexDirection = 'column' }) => flexDirection};
-    align-items: ${({ alignItems = 'stretch' }) => alignItems};
     width: ${({ width = 'auto' }) => width};
     ${props => props.box && `
         width: 100%;
@@ -30,7 +29,7 @@ export const Inner = styled.div`
 export const Title = styled.p`
     color: ${props => props.theme.colors.textColor};
     font-size: ${({ size = 16 }) => size + 'px'};
-    font-weight: ${({ weight = 600 }) => weight};
+    font-weight: 600;
     padding-top: ${({ paddingTop = 0 }) => paddingTop + 'px'};
     padding-bottom: ${({ paddingBottom = 0 }) => paddingBottom + 'px'};
     ${props => props.up && `
@@ -41,6 +40,9 @@ export const Title = styled.p`
     `}
     ${props => props.none && `
         color: #9ca3af;
+    `}
+    ${props => props.primary && `
+        font-weight: 500;
     `}
 `
 

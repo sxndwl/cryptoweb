@@ -19,6 +19,16 @@ const Wrap = styled.div`
     
 `
 
+const Row = styled(Inner)`
+    width: 25%;
+    @media ${props => props.media.media.phone} {
+        width: 33%;
+        ${props => props.mediaNone && `
+            display: none;
+        `
+    }
+`
+
 const ArrowWrap = styled.div`
     display: flex;
     align-items: center;
@@ -26,14 +36,27 @@ const ArrowWrap = styled.div`
     height: 28px;
     width: 28px;
     border-radius: 50%;
-    border: 0.58152px solid ${({ border = 'rgb(156 163 175)' }) => border};
-    background: ${({ background = ' rgba(156 163 175 0.5)' }) => background};
-    stroke: ${({ stroke = 'rgb(156 163 175)' }) => stroke};
     margin-left: 10px;
     transition: none;
+
+    ${props => props.none && `
+        border: 0.58152px solid rgb(156 163 175);
+        background: rgba(156 163 175 0.5);
+        stroke: rgb(156 163 175);
+    `}
+    ${props => props.up && `
+        border: 0.58152px solid #06D6A0;
+        background: rgba(6, 214, 160, 0.11);
+        stroke: #06D6A0;
+    `}
+    ${props => props.down && `
+        border: 0.58152px solid #EF476F;
+        background: rgba(239, 71, 111, 0.11);
+        stroke: #EF476F;
+    `}
 `
 
-const Currency = ({ name, subname, currencyValue }) => {
+const Currency = ({ name, subname, currencyValue, media }) => {
     const dispatch = useDispatch()
 
     function changeCurrency (name){
@@ -46,73 +69,51 @@ const Currency = ({ name, subname, currencyValue }) => {
     if (currencyValue) {
         return (
             <Wrap onClick={() => changeCurrency(currencyValue.courses.s)}>
-                <Inner width='25%'>
-                    <Title size={16} weight={500}>{name}</Title>
+                <Row media={media}>
+                    <Title size={16} primary>{name}</Title>
                     <Subtitle>{subname}</Subtitle>
-                </Inner>
+                </Row>
                 {currencyValue.isPriceGoingUp === null ? (
                     <>
-                        <Inner width='25%'>
-                            <ArrowWrap>
+                        <Row media={media}>
+                            <ArrowWrap none>
                                 <Icon20ArrowRightOutline fill='9ca3af'/>
                             </ArrowWrap>
-                        </Inner>
-                        <Inner width='25%'>
+                        </Row>
+                        <Row media={media} mediaNone>
                             <Title none>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
-                            {/* <Subtitle color='#9ca3af'>-(5,20%)</Subtitle> */}
-                        </Inner>
+                        </Row>
                     </>
                 ) : currencyValue.isPriceGoingUp ? (
                     <>
-                        <Inner width='25%'>
-                            <ArrowWrap stroke='#06D6A0' border='#06D6A0' background='rgba(6, 214, 160, 0.11)'>
+                        <Row media={media}>
+                            <ArrowWrap up>
                                 <Icon20ArrowUpOutline fill='06D6A0'/>
                             </ArrowWrap>
-                        </Inner>
-                        <Inner width='25%'>
+                        </Row>
+                        <Row media={media} mediaNone>
                             <Title up>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
-                            {/* <Subtitle color='#06D6A0'>-(5,20%)</Subtitle> */}
-                        </Inner>
+                        </Row>
                     </>
                 ) : (
                     <>
-                        <Inner width='25%'>
-                            <ArrowWrap stroke='#EF476F' border='#EF476F' background='rgba(239, 71, 111, 0.11)'>
+                        <Row media={media}>
+                            <ArrowWrap down>
                                 <Icon20ArrowDownOutline fill='EF476F' />
                             </ArrowWrap>
-                        </Inner>
-                        <Inner width='25%'>
+                        </Row>
+                        <Row media={media} mediaNone>
                             <Title down>${parseFloat(currencyValue.difference).toLocaleString('en')}</Title>
-                            {/* <Subtitle color='#EF476F'>-(5,20%)</Subtitle> */}
-                        </Inner>
+                        </Row>
                     </>
                 )}
-                <Inner width='25%'>
+                <Row media={media}>
                     <Title size={16}>${parseFloat(currencyValue.courses.c).toLocaleString('en')}</Title>
-                </Inner>
+                </Row>
             </Wrap>
        )
     }
-    return (
-        <Wrap>
-            <Inner width='25%'>
-                <Title size={16}>{<Skeleton baseColor='#a8a8a8' width={70} />}</Title>
-                <Subtitle>{<Skeleton baseColor='#a8a8a8' width={70} />}</Subtitle>
-            </Inner>
-            <Inner width='25%'>
-                <ArrowWrap border='none'>
-                    <Skeleton baseColor='#a8a8a8' circle width={28} height={28} />
-                </ArrowWrap>
-            </Inner>
-            <Inner width='25%'>
-                <Title color='#06D6A0'><Skeleton baseColor='#a8a8a8' width={70} /></Title>
-                {/* <Subtitle color='#06D6A0'><Skeleton width={70} /></Subtitle> */}
-            </Inner>
-            <Inner width='25%'>
-                <Skeleton baseColor='#a8a8a8' />
-            </Inner>
-        </Wrap>
-    );
+    
 }
 
 export default Currency

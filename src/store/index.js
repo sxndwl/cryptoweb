@@ -7,7 +7,6 @@ import { dogeReducer } from './reducers/dogeReducer'
 import { ltcReducer } from './reducers/ltcReducer'
 import { xrpReducer } from './reducers/xrpReducer'
 import { currentCurrency } from './reducers/currentCurrency'
-import { tradeReducer } from './reducers/tradeReducer'
 import { themeReducer } from './reducers/themeReducer'
 
 const rootReducer = combineReducers({
@@ -18,7 +17,6 @@ const rootReducer = combineReducers({
     dash: dashReducer,
     doge: dogeReducer,
     current: currentCurrency,
-    trade: tradeReducer,
     theme: themeReducer
 })
 
