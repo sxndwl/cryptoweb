@@ -16,4 +16,4 @@ Cryptoweb - это веб-приложение, которое позволяе�
 - <a href='https://github.com/VKCOM/icons'>Vkicons</a> для использования иконок
 - <a href='https://github.com/tradingview/lightweight-charts'>Lightweight-charts</a> для отображения графиков
 
-###<a href='sxndwl.github.io'>Посетить сайт</a>
+<a href='sxndwl.github.io'>Посетить сайт</a>
