@@ -25,7 +25,7 @@ const Row = styled(Inner)`
         width: 33%;
         ${props => props.mediaNone && `
             display: none;
-        `
+        `}
     }
 `
 
@@ -113,7 +113,26 @@ const Currency = ({ name, subname, currencyValue, media }) => {
             </Wrap>
        )
     }
-    
+
+    return (
+        <Wrap>
+            <Row media={media}>
+                <Title size={16}>{<Skeleton baseColor='#a8a8a8' width={70} />}</Title>
+                <Subtitle>{<Skeleton baseColor='#a8a8a8' width={70} />}</Subtitle>
+            </Row>
+            <Row media={media}>
+                <ArrowWrap border='none'>
+                    <Skeleton baseColor='#a8a8a8' circle width={28} height={28} />
+                </ArrowWrap>
+            </Row>
+            <Row media={media}>
+                <Title color='#06D6A0'><Skeleton baseColor='#a8a8a8' width={70} /></Title>
+            </Row>
+            <Row media={media}>
+                <Skeleton baseColor='#a8a8a8' />
+            </Row>
+        </Wrap>
+    );
 }
 
 export default Currency

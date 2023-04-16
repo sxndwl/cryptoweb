@@ -12,12 +12,12 @@ const Wrap = styled(Wrapper)`
 `
 const Row = styled(Inner)`
     width: 16%;
-
-    @media {props => props.media.phone} {
+    
+    @media ${props => props.media.media.phone} {
+        width: 33%;
         ${props => props.mediaNone && `
-            width: 20%;
             display: none;
-        `  
+        `}
     }
 `
 
@@ -88,7 +88,7 @@ const Aside = (props) => {
                 <Subtitle>24h Low</Subtitle>
                 <Title paddingTop={4}><Skeleton baseColor='#a8a8a8' /></Title>
             </Row>
-            <Row media={props}>
+            <Row media={props} mediaNone>
                 <Subtitle>24h Volume</Subtitle>
                 <Title paddingTop={4}><Skeleton baseColor='#a8a8a8' /></Title>
             </Row>
