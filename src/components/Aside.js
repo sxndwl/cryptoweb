@@ -14,7 +14,7 @@ const Row = styled(Inner)`
     width: 16%;
     
     @media ${props => props.media.media.phone} {
-        width: 33%;
+        width: 15%;
         ${props => props.mediaNone && `
             display: none;
         `}
@@ -22,7 +22,6 @@ const Row = styled(Inner)`
 `
 
 const Aside = (props) => {
-    console.log(props.media)
     const name = useSelector(state => state.current.name)
     useCurrent(name)
 
@@ -66,6 +65,7 @@ const Aside = (props) => {
             </Wrap>
         )
     }
+    
     return(
         <Wrap height='40px'>
             <Row media={props}>

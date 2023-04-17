@@ -27,6 +27,7 @@ const Tutorial = (props) => {
         open: 'Открыть',
         skip: 'Пропустить'
     }
+    
     return (
         <>
             {shouldShow && (

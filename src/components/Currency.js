@@ -125,7 +125,7 @@ const Currency = ({ name, subname, currencyValue, media }) => {
                     <Skeleton baseColor='#a8a8a8' circle width={28} height={28} />
                 </ArrowWrap>
             </Row>
-            <Row media={media}>
+            <Row media={media} mediaNone>
                 <Title color='#06D6A0'><Skeleton baseColor='#a8a8a8' width={70} /></Title>
             </Row>
             <Row media={media}>
